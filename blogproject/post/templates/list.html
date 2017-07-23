@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DICTIONARY TEST</title>
+	<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
+	body {
+		background-color: crimson;
+	}
+	h1 {
+		font-size: 80px;
+		font-family: verdana;
+	}
+	#img {
+		align: center;
+		border: dashed;
+	}
+	ol {
+		font-family: Roboto;
+		font-size: 40px;
+	}
+	h1 {
+		font-family:Roboto;
+	}
+	ul {
+		font-family: Roboto;
+		color: grey;
+		size: 18px;
+	}
+	#new {
+		color: white;
+	}
+	</style>
+</head>
+<body>
+<h1>DICTIONARY TEST</h1>
+<h2>The Post {{title}}</h2>
+<ol>
+<li>User: {{user}}</li>
+<li>two</li>
+<li>three</li>
+<li>roboto font</li>
+</ol>
+<h2> Posts List </h2>
+<ul>
+	{% for instance in post_list %}
+		<br>
+		<li>{{instance.title}}<br>
+		{{instance.content}}</li>
+	{% endfor %}
+</ul>
+
+<h3>One object and its contents task:</h3>
+<ul id="new">
+Title: {{post_one.title}}<br>
+Content: {{post_one.content}}<br>
+Time Updated: {{post_one.updated}}<br>
+Created: {{post_one.timestamp}}
+</ul>
+<div style="text-align: center"><img src="https://i.vimeocdn.com/portrait/58832_300x300" id="img">
+</div>
+</body>
+</html>
