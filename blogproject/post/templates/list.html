@@ -45,7 +45,7 @@
 <ul>
 	{% for instance in post_list %}
 		<br>
-		<a href="/id/{{instance.id}}"><li>{{instance.title}}<br>
+		<a href="{% url 'id' post_number=instance.id %}"><li>{{instance.title}}<br>
 		{{instance.content}}</li></a>
 	{% endfor %}
 </ul>
