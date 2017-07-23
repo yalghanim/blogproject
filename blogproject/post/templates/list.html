@@ -45,8 +45,8 @@
 <ul>
 	{% for instance in post_list %}
 		<br>
-		<li>{{instance.title}}<br>
-		{{instance.content}}</li>
+		<a href="/id/{{instance.id}}"><li>{{instance.title}}<br>
+		{{instance.content}}</li></a>
 	{% endfor %}
 </ul>
 

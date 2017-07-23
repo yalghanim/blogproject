@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
+from django.shortcuts import get_object_or_404
 
 def home(request):
 	return HttpResponse("<h1> شغال </h1><br><br><h3>THIS STUFF IS EASY</h3>")
@@ -21,6 +22,13 @@ def post_list(request):
 	"post_one": post_one,
 	}
 	return render(request, 'list.html', context) 
+
+def post_id(request, post_number):
+	obj = get_object_or_404(Post, id = post_number)
+	context = {
+	"input": obj
+	}
+	return render(request, 'obj.html', context) 
 
 def post_detail(request):
 	return HttpResponse("<h1>detail</h1>")

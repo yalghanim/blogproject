@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>One ID at a time (special URL that takes input from address)</title>
+	<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
+	body {
+		background-color: crimson;
+		font-family: Roboto;
+	}
+	h1 {
+		font-size: 80px;
+		font-family: verdana;
+	}
+	#img {
+		align: center;
+		border: dashed;
+	}
+	ol {
+
+		font-size: 40px;
+	}
+	ul {
+		color: grey;
+		size: 18px;
+	}
+	#new {
+		color: white;
+	}
+	</style>
+</head>
+<body>
+<h1>ID Page</h1>
+<h2></h2>
+<ul id="new">
+Title: {{input.title}}<br>
+Content: {{input.content}}<br>
+Time Updated: {{input.updated}}<br>
+Created: {{input.timestamp}}
+</ul>
+</body>
+</html>

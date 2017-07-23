@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^view/$', views.post_view, name="view"),
     url(r'^index/$', views.post_index, name="index"),
     url(r'^fourth/$', views.post_fourth, name="fourth"),
+    url(r'^id/(?P<post_number>\d+)/$', views.post_id, name="ghatheeth")
 
 #carrot ^ defines where URL begins and dollar sign $ where URL ends
 ]
