@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User Form</title>
+	<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
+	body {
+		background-color: orange;
+		font-family: Roboto;
+	}
+	</style>
+</head>
+<body>
+<br><br>
+<form method="Post">
+{% csrf_token %}
+{{form.as_p}}<br>
+<input type="submit" value="Create Post">
+</form>
+<br><br><br><br><br>
+<img src="http://www.osc.gov.on.ca/static/images/Stock/form-icon.png">
+</body>
+</html>

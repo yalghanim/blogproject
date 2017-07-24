@@ -22,7 +22,6 @@
 </head>
 <body>
 <h1>ID Page</h1>
-<h2></h2>
 <ul id="new">
 Title: {{input.title}}<br>
 Content: {{input.content}}<br>
@@ -30,7 +29,7 @@ Time Updated: {{input.updated}}<br>
 Created: {{input.timestamp}}
 </ul>
 <br><br>
-<a href="{% url 'list' %}">Go back to list</a>
+<a href="{% url 'posts:list' %}">Go back to list</a>
 <br><br>
 <div>
 <iframe width="600" height="450" src="https://www.youtube.com//embed/cpPG0bKHYKc">

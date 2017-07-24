@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
 from django.shortcuts import get_object_or_404
+from .forms import PostForm
 
 def home(request):
 	return HttpResponse("<h1> شغال </h1><br><br><h3>THIS STUFF IS EASY</h3>")
@@ -42,5 +43,10 @@ def post_index(request):
 	return render(request, 'ind.html', {})
 def post_fourth(request):
 	return render(request, 'fourth.html', {})  
- 
-# Create your views here.
+
+def post_create(request):
+	form = PostForm()
+	context = {
+		"form":form,
+	}
+	return render(request, 'form.html', context)

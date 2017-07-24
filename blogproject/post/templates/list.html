@@ -45,11 +45,19 @@
 <ul>
 	{% for instance in post_list %}
 		<br>
-		<a href="{% url 'id' post_number=instance.id %}"><li>{{instance.title}}<br>
+		<a href="{% url 'posts:id' post_number=instance.id %}"><li>{{instance.title}}<br>
 		{{instance.content}}</li></a>
 	{% endfor %}
 </ul>
 
+<h2> Posts List - Object URL method</h2>
+<ul>
+	{% for x in post_list %}
+		<br>
+		<a href="{{x.absurl}}"><li>{{x.title}}<br>
+		{{x.content}}</li></a>
+	{% endfor %}
+</ul>
 <h3>One object and its contents task:</h3>
 <ul id="new">
 Title: {{post_one.title}}<br>
