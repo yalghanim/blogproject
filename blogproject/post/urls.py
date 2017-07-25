@@ -1,5 +1,7 @@
 from django.conf.urls import url
 from . import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^home/$', views.home, name="home"),
@@ -16,6 +18,10 @@ urlpatterns = [
     url(r'^form/$',  views.post_create, name="form"),
     url(r'^update/(?P<post_number>\d+)/$', views.post_update, name="update"),
     url(r'^delete/(?P<post_number>\d+)/$', views.post_delete, name="delete"),
-
+ 
 #carrot ^ defines where URL begins and dollar sign $ where URL ends
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

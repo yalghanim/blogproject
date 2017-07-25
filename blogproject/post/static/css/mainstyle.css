@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+	body {
+		background-color: white;
+	}
+	h1 {
+		font-size: 80px;
+		font-family: verdana;
+	}
+	#img {
+		align: center;
+		border: dashed;
+	}
+	ol {
+		font-family: Roboto;
+		font-size: 40px;
+	}
+	h1 {
+		font-family:Roboto;
+	}
+	ul {
+		font-family: Roboto;
+		size: 18px;
+	}
+	#new {
+		color: white;
+	}
+	#create {
+    background-color: #4CAF50;
+	}
+	#update {
+	background-color: #f4b942;
+	}
+	#delete {
+	background-color: #f25148;	
+	}
+	button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+	}
+	#messages {
+		list-style-image: url('http://findicons.com/files/icons/1588/farm_fresh_web/32/link_go.png');
+	}

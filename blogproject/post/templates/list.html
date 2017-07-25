@@ -1,67 +1,22 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<title>MOTHER LIST</title>
-	<style>
-	@import url('https://fonts.googleapis.com/css?family=Roboto');
-	body {
-		background-color: white;
-	}
-	h1 {
-		font-size: 80px;
-		font-family: verdana;
-	}
-	#img {
-		align: center;
-		border: dashed;
-	}
-	ol {
-		font-family: Roboto;
-		font-size: 40px;
-	}
-	h1 {
-		font-family:Roboto;
-	}
-	ul {
-		font-family: Roboto;
-		color: grey;
-		size: 18px;
-	}
-	#new {
-		color: white;
-	}
-	#create {
-    background-color: #4CAF50;
-	}
-	button {
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 18px;
-	}
-	</style>
+	<link rel="stylesheet" href="{% static 'css/mainstyle.css' %}">
 </head>
 <body>
-{% if messages %}
-<ul class="messages">
-{% for message in messages %}
-<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li>
-{% endfor %}
-</ul>
-{% endif %}
+{% include 'messages.html' %}
 <br><br>
 <a href="../form"><button type="button" id="create">Create New Post
 </button></a>
 <br><br>
 {% for x in post_list %}
-		<a href="../update/{{x.id}}"><button type="button">Update {{x.id}}</button></a>
+		<a href="../update/{{x.id}}"><button type="button" id="update">Update {{x.id}}</button></a>
 	{% endfor %}
 <br><br>
 {% for x in post_list %}
-		<a href="../delete/{{x.id}}"><button type="button">Delete {{x.id}}</button></a>
+		<a href="../delete/{{x.id}}"><button type="button" id="delete"> Delete  {{x.id}}</button></a>
 	{% endfor %}
 <br><br>
 <h1>DICTIONARY TEST</h1>
