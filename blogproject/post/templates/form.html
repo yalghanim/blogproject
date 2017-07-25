@@ -15,7 +15,7 @@
 <form method="Post">
 {% csrf_token %}
 {{form.as_p}}<br>
-<input type="submit" value="Create Post">
+<input type="submit" value="Create Post" action="{% url 'posts:create' %}">
 </form>
 <br><br><br><br><br>
 <img src="http://www.osc.gov.on.ca/static/images/Stock/form-icon.png">

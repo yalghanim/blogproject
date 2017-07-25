@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>	Update Post Form</title>
+	<style>
+	@import url('https://fonts.googleapis.com/css?family=Roboto');
+	body {
+		background-color: #AF241D;
+		font-family: Roboto;
+	}
+	img {
+		width: 50%;
+		height: 50%;
+	}
+	</style>
+</head>
+<body>
+<br><br>
+<form method="Post" action="{% url 'posts:update' post_number=post_object.id %}">
+{% csrf_token %}
+{{form.as_p}}<br>
+<input type="submit" value="Update Post">
+</form>
+<br><br><br><br><br>
+<div align="center"> <img src="https://dev.dutil.com/wp-content/uploads/2016/12/update.jpg"></div>
+</body>
+</html>

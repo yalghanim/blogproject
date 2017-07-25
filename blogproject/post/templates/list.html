@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>DICTIONARY TEST</title>
+	<title>MOTHER LIST</title>
 	<style>
 	@import url('https://fonts.googleapis.com/css?family=Roboto');
 	body {
-		background-color: crimson;
+		background-color: white;
 	}
 	h1 {
 		font-size: 80px;
@@ -30,9 +30,40 @@
 	#new {
 		color: white;
 	}
+	#create {
+    background-color: #4CAF50;
+	}
+	button {
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+	}
 	</style>
 </head>
 <body>
+{% if messages %}
+<ul class="messages">
+{% for message in messages %}
+<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li>
+{% endfor %}
+</ul>
+{% endif %}
+<br><br>
+<a href="../form"><button type="button" id="create">Create New Post
+</button></a>
+<br><br>
+{% for x in post_list %}
+		<a href="../update/{{x.id}}"><button type="button">Update {{x.id}}</button></a>
+	{% endfor %}
+<br><br>
+{% for x in post_list %}
+		<a href="../delete/{{x.id}}"><button type="button">Delete {{x.id}}</button></a>
+	{% endfor %}
+<br><br>
 <h1>DICTIONARY TEST</h1>
 <h2>The Post {{title}}</h2>
 <ol>

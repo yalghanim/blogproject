@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Post
 from django.shortcuts import get_object_or_404
 from .forms import PostForm
+
+from django.contrib import messages
 
 def home(request):
 	return HttpResponse("<h1> شغال </h1><br><br><h3>THIS STUFF IS EASY</h3>")
@@ -45,8 +47,30 @@ def post_fourth(request):
 	return render(request, 'fourth.html', {})  
 
 def post_create(request):
-	form = PostForm()
+	form = PostForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+		messages.success(request, "Mabroooooook!!!!!")
+		return redirect("posts:list")
 	context = {
 		"form":form,
 	}
 	return render(request, 'form.html', context)
+
+def post_update(request, post_number):
+	post_object = get_object_or_404(Post, id=post_number)
+	form = PostForm(request.POST or None, instance=post_object)
+	if form.is_valid():
+		form.save()
+		messages.success(request, "zain sawait")
+		return redirect("posts:list")
+	context = {
+		"form": form,
+		"post_object": post_object,
+	}
+	return render(request, 'update.html', context)
+
+def post_delete(request, post_number):
+	Post.objects.get(id=post_number).delete()
+	messages.warning(request, "Haram alaik")
+	return redirect("posts:list")
