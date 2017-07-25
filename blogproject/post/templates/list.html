@@ -3,7 +3,8 @@
 <html>
 <head>
 	<title>MOTHER LIST</title>
-	<link rel="stylesheet" href="{% static 'css/mainstyle.css' %}">
+	{# <link rel="stylesheet" href="{% static 'css/mainstyle.css' %}"> #}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 </head>
 <body>
 {% include 'messages.html' %}
@@ -53,5 +54,7 @@ Created: {{post_one.timestamp}}
 </ul>
 <div style="text-align: center"><img src="https://i.vimeocdn.com/portrait/58832_300x300" id="img">
 </div>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
