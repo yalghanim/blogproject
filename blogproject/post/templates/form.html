@@ -13,11 +13,13 @@
 
 <div class="panel panel-default">
   <div class="panel-body">
-    <form method="Post">
+    <form method="Post" enctype="multipart/form-data" action="{% url 'posts:create' %}">
 {% csrf_token %}
 {{form.as_p}}<br>
   </div>
-  <div class="panel-footer"><div align="center"> <input class="btn btn-primary" type="submit" value="Create Post" action="{% url 'posts:create' %}"></div></div></form>
+  <div class="panel-footer">
+  <div align="center"> <input class="btn btn-primary" type="submit" value="Create Post"></div>
+  </div></form>
 </div>
 <img class="img-responsive" src="http://www.osc.gov.on.ca/static/images/Stock/form-icon.png">
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>

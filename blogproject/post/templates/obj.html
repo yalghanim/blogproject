@@ -1,32 +1,28 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<title>One ID at a time (special URL that takes input from address)</title>
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 	<style>
 	@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 	body {
 		background-color: CadetBlue;
 		font-family: Roboto;
 	}
-	h1 {
-		font-size: 80px;
-		font-family: verdana;
-	}
-	ul {
-		color: white;
-	}
-	a {
-		font-size: 20px;
-	}
+
 	</style>
 </head>
 <body>
+<div class="container">
 <h1>ID Page</h1>
 <ul id="new">
 Title: {{input.title}}<br>
 Content: {{input.content}}<br>
 Time Updated: {{input.updated}}<br>
-Created: {{input.timestamp}}
+Created: {{input.timestamp}}<br>
+Image: <br><img src="{{input.image.url}}" class="img-responsive">
 </ul>
 <br><br>
 <a href="{% url 'posts:list' %}">Go back to list</a>
@@ -35,6 +31,7 @@ Created: {{input.timestamp}}
 <iframe width="600" height="450" src="https://www.youtube.com//embed/cpPG0bKHYKc">
 </iframe>
 </div>
-
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>

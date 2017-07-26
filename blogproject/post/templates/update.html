@@ -11,11 +11,11 @@
 <br><br>
 <div class="panel panel-default">
   <div class="panel-body">
-    <form method="Post" action="{% url 'posts:update' post_number=post_object.id %}">
+    <form method="Post" action="{% url 'posts:update' post_number=post_object.id %}" enctype="multipart/form-data">
 {% csrf_token %}
 {{form.as_p}}<br></div>
 <div class="panel-footer"><div align="center">
-<input class="btn btn-primary" type="submit" value="Update Post" action="{% url 'posts:update' post_number=post_object.id %}"></div>
+<input class="btn btn-primary" type="submit" value="Update Post"></div>
 </form></div></form></div>
 <br><br>
 <div>

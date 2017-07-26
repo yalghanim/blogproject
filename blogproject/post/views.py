@@ -18,6 +18,7 @@ def post_delete(request):
 def post_list(request):
 	post_list = Post.objects.all()
 	post_one = Post.objects.get(title="edited name")
+
 	context = {
 	"title": "(this is taken from the context)",
 	"user": request.user,
@@ -47,7 +48,7 @@ def post_fourth(request):
 	return render(request, 'fourth.html', {})  
 
 def post_create(request):
-	form = PostForm(request.POST or None)
+	form = PostForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		form.save()
 		messages.success(request, "Mabroooooook!!!!!")
@@ -59,7 +60,7 @@ def post_create(request):
 
 def post_update(request, post_number):
 	post_object = get_object_or_404(Post, id=post_number)
-	form = PostForm(request.POST or None, instance=post_object)
+	form = PostForm(request.POST or None, request.FILES or None, instance=post_object)
 	if form.is_valid():
 		form.save()
 		messages.success(request, "zain sawait")
