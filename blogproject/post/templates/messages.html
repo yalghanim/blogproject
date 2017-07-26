@@ -1,7 +1,10 @@
 {% if messages %}
-<ul class="messages" id="messages">
+<div class="messages">
 {% for message in messages %}
-<li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{message}}</li>
+ <div{% if message.tags %} class="alert alert-{{message.tags}}  alert-dismissable" role="alert"{% endif %}>
+ {{message}}
+ <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+ <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span></button>
 {% endfor %}
-</ul>
+</div>
 {% endif %}

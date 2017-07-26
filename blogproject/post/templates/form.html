@@ -1,23 +1,27 @@
 <!DOCTYPE html>
+{% load static %}
 <html>
 <head>
 	<title>User Form</title>
-	<style>
-	@import url('https://fonts.googleapis.com/css?family=Roboto');
-	body {
-		background-color: orange;
-		font-family: Roboto;
-	}
-	</style>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	{# <link rel="stylesheet" href="{% static 'css/form.css' %}"> #}
+
 </head>
 <body>
+<div class="container">
 <br><br>
-<form method="Post">
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form method="Post">
 {% csrf_token %}
 {{form.as_p}}<br>
-<input type="submit" value="Create Post" action="{% url 'posts:create' %}">
-</form>
-<br><br><br><br><br>
-<img src="http://www.osc.gov.on.ca/static/images/Stock/form-icon.png">
+  </div>
+  <div class="panel-footer"><div align="center"> <input class="btn btn-primary" type="submit" value="Create Post" action="{% url 'posts:create' %}"></div></div></form>
+</div>
+<img class="img-responsive" src="http://www.osc.gov.on.ca/static/images/Stock/form-icon.png">
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</div>
 </body>
 </html>
