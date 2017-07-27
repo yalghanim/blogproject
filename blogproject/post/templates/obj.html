@@ -25,11 +25,10 @@ Created: {{input.timestamp}}<br>
 Image: <br><img src="{{input.image.url}}" class="img-responsive">
 </ul>
 <br><br>
-<a href="{% url 'posts:list' %}">Go back to list</a>
+<a href="{% url 'posts:list' %}" class="btn btn-primary" role="button">Go Back to List</a>
 <br><br>
-<div>
-<iframe width="600" height="450" src="https://www.youtube.com//embed/cpPG0bKHYKc">
-</iframe>
+<div class="embed-responsive embed-responsive-16by9">
+  <iframe class="embed-responsive-item" src="https://www.youtube.com//embed/cpPG0bKHYKc"></iframe>
 </div>
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>
