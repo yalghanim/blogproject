@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+Cleaner. Fresher. Newer.
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+   {% for x in post_list %}
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+    {% if x.image %}
+      <img src="{{x.image.url}}" class="img-responsive">
+     {% endif %}
+      <div class="caption">
+        <h3>{{x.title}}<br><small>{{x.timestamp|timesince}} ago</small></h3>
+        <p>{{x.content|linebreaks|truncatechars:10}}</p>
+        <p><a href="{{x.absurl}}" class="btn btn-success" role="button">View</a>
+        <a href="{% url 'posts:update' post_number=x.id  %}" class="btn btn-info" role="button">Edit</a>
+        <a href="{% url 'posts:delete' post_number=x.id  %}" class="btn btn-danger" role="button">Delete</a> </p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock content %}

@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^form/$',  views.post_create, name="form"),
     url(r'^update/(?P<post_number>\d+)/$', views.post_update, name="update"),
     url(r'^delete/(?P<post_number>\d+)/$', views.post_delete, name="delete"),
+    url(r'^new/$', views.new_list, name="new")
  
 #carrot ^ defines where URL begins and dollar sign $ where URL ends
 ]

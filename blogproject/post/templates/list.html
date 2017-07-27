@@ -23,6 +23,11 @@
 </head>
 <body>
 {% include 'messages.html' %}
+<ol class="breadcrumb">
+  <li><a href="{% url 'posts:list' %}">Old List</a></li>
+  <li><a href="{% url 'posts:new' %}">New List</a></li>
+  <li><a href="{% url 'posts:create' %}">Create</a></li>
+</ol>
 <div class="container">
 <br><br>
 <a href="../form"><button type="button" id="create" class="btn btn-primary">Create New Post
@@ -105,6 +110,10 @@ Created: {{post_one.timestamp}}
 </ul>
 <div style="text-align: center"><img src="https://i.vimeocdn.com/portrait/58832_300x300" id="img">
 </div>
+<a href="https://www.facebook.com/sharer/sharer.php?u=http://www.elevent.me">
+<strong>Share this page on Facebook</strong>
+</a>
+<br><br>
 </div>
 <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.min.js' %}"></script>

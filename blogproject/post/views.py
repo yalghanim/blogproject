@@ -27,6 +27,13 @@ def post_list(request):
 	}
 	return render(request, 'list.html', context) 
 
+def new_list(request):
+	post_list = Post.objects.all()
+	context = {
+	"post_list": post_list,
+	}
+	return render(request, 'newlist.html', context) 
+
 def post_id(request, post_number):
 	obj = get_object_or_404(Post, id = post_number)
 	context = {
