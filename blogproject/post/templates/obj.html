@@ -22,7 +22,8 @@ Title: {{input.title}}<br>
 Content: {{input.content}}<br>
 Time Updated: {{input.updated}}<br>
 Created: {{input.timestamp}}<br>
-Image: <br><img src="{{input.image.url}}" class="img-responsive">
+Image: <br>{% if not input.draft %}<img src="{{input.image.url}}" class="img-responsive"> {% endif %}
+{% if input.draft %} DRAFT {% endif %}
 </ul>
 <br><br>
 <a href="{% url 'posts:list' %}" class="btn btn-primary" role="button">Go Back to List</a>

@@ -6,6 +6,8 @@ from .forms import PostForm
 
 from django.contrib import messages
 from django.http import Http404
+from django.utils import timezone 
+from django.db.models import Q
 
 
 def home(request):
@@ -18,16 +20,30 @@ def post_delete(request):
 	return HttpResponse("<h1>delete</h1>")
 
 def post_list(request):
-	post_list = Post.objects.all()
+
+	today = timezone.now().date()
+	post_list = Post.objects.filter(draft=False).filter(publish__lte=today)
+	if request.user.is_staff or request.user.is_superuser:
+		post_list = Post.objects.all()
 	post_one = Post.objects.get(title="edited name")
+	query = request.GET.get("q")
+	if query:
+		post_list = post_list.filter(
+			Q(title__icontains=query)|
+			Q(content__icontains=query)|
+			Q(author__first_name__icontains=query)|
+			Q(author__last_name__icontains=query)|
+			Q(author__username__icontains=query)
+			).distinct()
 
 	context = {
 	"title": "(this is taken from the context)",
 	"user": request.user,
 	"post_list": post_list,
 	"post_one": post_one,
+	"today": today,
 	}
-	return render(request, 'list.html', context) 
+	return render(request, 'newlist.html', context) 
 
 def new_list(request):
 	post_list = Post.objects.all()
@@ -38,6 +54,11 @@ def new_list(request):
 
 def post_id(request, slug):
 	obj = get_object_or_404(Post, slug=slug)
+	date = timezone.now().date()
+	if obj.publish > date or obj.draft:
+		if not(request.user.is_staff or request.user.is_superuser):
+			raise Http404
+
 	context = {
 	"input": obj
 	}
@@ -62,7 +83,9 @@ def post_create(request):
 
 	form = PostForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
-		form.save()
+		form.save(commit=False)
+		obj.author = request.user
+		obj.save
 		messages.success(request, "Mabroooooook!!!!!")
 		return redirect("posts:list")
 	context = {

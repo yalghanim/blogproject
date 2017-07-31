@@ -10,9 +10,11 @@ class Post(models.Model):
 	author = models.ForeignKey(User, default=1)
 	title = models.CharField(max_length=140)
 	content = models.TextField()
+	draft = models.BooleanField(default=False)
 	image = models.ImageField(upload_to="blog_images", null=True, blank=True)
 	updated = models.DateTimeField(auto_now=True)
 	timestamp = models.DateTimeField(auto_now_add=True)
+	publish = models.DateField()
 	slug = models.SlugField(unique=True)
 
 	def __str__(self):
