@@ -15,9 +15,10 @@ Cleaner. Fresher. Newer.
       <div class="caption">
         <h3>{{x.title}}<br><small>{{x.timestamp|timesince}} ago</small></h3>
         <p>{{x.content|linebreaks|truncatechars:10}}</p>
+        Author: {{x.author.get_full_name}}<br>
         <p><a href="{{x.absurl}}" class="btn btn-success" role="button">View</a>
-        <a href="{% url 'posts:update' post_number=x.id  %}" class="btn btn-info" role="button">Edit</a>
-        <a href="{% url 'posts:delete' post_number=x.id  %}" class="btn btn-danger" role="button">Delete</a> 
+        <a href="{% url 'posts:update' slug=x.slug  %}" class="btn btn-info" role="button">Edit</a>
+        <a href="{% url 'posts:delete' slug=x.slug  %}" class="btn btn-danger" role="button">Delete</a> 
         <!--
         <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}">
            <img alt="twitter" src="//login.create.net/images/icons/user/facebook_30x30.png" border=0> 

@@ -22,6 +22,32 @@
   <li><a href="{% url 'posts:list' %}">Old List</a></li>
   <li><a href="{% url 'posts:new' %}">New List</a></li>
   <li><a href="{% url 'posts:create' %}">Create</a></li>
+  <li>
+  Post Page: 
+  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Update</span>
+  </button>
+  <ul class="dropdown-menu">
+{% for x in post_list %}
+<li><a href="{{x.absurl}}">{{x.title}}</a></li>
+<li role="separator" class="divider"></li>
+{% endfor %}
+  </ul>
+  </li>
+  <li>
+Update: 
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Update</span>
+  </button>
+  <ul class="dropdown-menu">
+{% for x in post_list %}
+<li><a href="{% url 'posts:update' slug=x.slug  %}">{{x.title}}</a></li>
+<li role="separator" class="divider"></li>
+{% endfor %}
+  </ul>
+  </li>
 </ol>
 </nav><br><br><br><br><br>
 <div class="container">

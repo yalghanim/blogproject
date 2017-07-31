@@ -5,6 +5,8 @@ from django.shortcuts import get_object_or_404
 from .forms import PostForm
 
 from django.contrib import messages
+from django.http import Http404
+
 
 def home(request):
 	return HttpResponse("<h1> شغال </h1><br><br><h3>THIS STUFF IS EASY</h3>")
@@ -34,8 +36,8 @@ def new_list(request):
 	}
 	return render(request, 'newlist.html', context) 
 
-def post_id(request, post_number):
-	obj = get_object_or_404(Post, id = post_number)
+def post_id(request, slug):
+	obj = get_object_or_404(Post, slug=slug)
 	context = {
 	"input": obj
 	}
@@ -55,6 +57,9 @@ def post_fourth(request):
 	return render(request, 'fourth.html', {})  
 
 def post_create(request):
+	if not (request.user.is_staff or request.user.is_superuser):
+		raise Http404
+
 	form = PostForm(request.POST or None, request.FILES or None)
 	if form.is_valid():
 		form.save()
@@ -65,8 +70,10 @@ def post_create(request):
 	}
 	return render(request, 'form.html', context)
 
-def post_update(request, post_number):
-	post_object = get_object_or_404(Post, id=post_number)
+def post_update(request, slug):
+	if not (request.user.is_superuser):
+		raise Http404
+	post_object = get_object_or_404(Post, slug=slug)
 	form = PostForm(request.POST or None, request.FILES or None, instance=post_object)
 	if form.is_valid():
 		form.save()
@@ -78,7 +85,9 @@ def post_update(request, post_number):
 	}
 	return render(request, 'update.html', context)
 
-def post_delete(request, post_number):
-	Post.objects.get(id=post_number).delete()
+def post_delete(request, slug):
+	if not (request.user.is_superuser):
+		raise Http404
+	Post.objects.get(slug=slug).delete()
 	messages.warning(request, "Haram alaik")
 	return redirect("posts:list")

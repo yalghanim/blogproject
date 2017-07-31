@@ -23,13 +23,41 @@
 </head>
 <body>
 {% include 'messages.html' %}
+<nav class="navbar navbar-default navbar-fixed-top">
 <ol class="breadcrumb">
   <li><a href="{% url 'posts:list' %}">Old List</a></li>
   <li><a href="{% url 'posts:new' %}">New List</a></li>
   <li><a href="{% url 'posts:create' %}">Create</a></li>
+  <li>
+  Post Page: 
+  <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Update</span>
+  </button>
+  <ul class="dropdown-menu">
+{% for x in post_list %}
+<li><a href="{{x.absurl}}">{{x.title}}</a></li>
+<li role="separator" class="divider"></li>
+{% endfor %}
+  </ul>
+  </li>
+  <li>
+Update: 
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <span class="caret"></span>
+    <span class="sr-only">Update</span>
+  </button>
+  <ul class="dropdown-menu">
+{% for x in post_list %}
+<li><a href="{% url 'posts:update' slug=x.slug  %}">{{x.title}}</a></li>
+<li role="separator" class="divider"></li>
+{% endfor %}
+  </ul>
+  </li>
 </ol>
+</nav>
 <div class="container">
-<br><br>
+<br><br><br><br><br>
 <a href="../form"><button type="button" id="create" class="btn btn-primary">Create New Post
 </button></a>
 <br><br>
@@ -53,7 +81,7 @@
 <ul>
 	{% for instance in post_list %}
 		<br>
-		<a href="{% url 'posts:id' post_number=instance.id %}"><li>{{instance.title}}<br>
+		<a href="{% url 'posts:id' slug=instance.slug %}"><li>{{instance.title}}<br>
 		{{instance.content}}</li></a>
 	{% endfor %}
 </ul>
@@ -77,9 +105,14 @@
       <div class="caption">
         <h3>{{x.title}}<br><small>{{x.timestamp|timesince}} ago</small></h3>
         <p>{{x.content|linebreaks|truncatechars:10}}</p>
-        <p><a href="{{x.absurl}}" class="btn btn-success" role="button">View</a>
-        <a href="{% url 'posts:update' post_number=x.id  %}" class="btn btn-info" role="button">Edit</a>
-        <a href="{% url 'posts:delete' post_number=x.id  %}" class="btn btn-danger" role="button">Delete</a> </p>
+        Author: {{x.author.get_full_name}}<br>
+        <p>
+        {% if request.user.is_superuser or request.user.is_staff %}
+        <a href="{% url 'posts:update' slug=x.slug  %}" class="btn btn-info" role="button">Edit</a>
+        <a href="{% url 'posts:delete' slug=x.slug  %}" class="btn btn-danger" role="button">Delete</a>
+        {% endif %}
+        </p>
+
       </div>
     </div>
   </div>
