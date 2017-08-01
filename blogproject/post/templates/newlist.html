@@ -29,8 +29,10 @@ Cleaner. Fresher. Newer.
         <p>{{x.content|linebreaks|truncatechars:10}}</p>
         Author: {{x.author.get_full_name}}<br>
         <p><a href="{{x.absurl}}" class="btn btn-success" role="button">View</a>
+        {% if user.is_staff or user.is_superuser%}
         <a href="{% url 'posts:update' slug=x.slug  %}" class="btn btn-info" role="button">Edit</a>
         <a href="{% url 'posts:delete' slug=x.slug  %}" class="btn btn-danger" role="button">Delete</a> 
+        {% endif %}
         <!--
         <a href="https://www.facebook.com/sharer/sharer.php?u={{request.build_absolute_uri}}">
            <img alt="twitter" src="//login.create.net/images/icons/user/facebook_30x30.png" border=0> 

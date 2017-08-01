@@ -18,7 +18,11 @@ urlpatterns = [
     url(r'^form/$',  views.post_create, name="form"),
     url(r'^update/(?P<slug>[-\w]+)/$', views.post_update, name="update"),
     url(r'^delete/(?P<slug>[-\w]+)/$', views.post_delete, name="delete"),
-    url(r'^new/$', views.new_list, name="new")
+    url(r'^new/$', views.new_list, name="new"),
+    url(r'^signup/$', views.usersignup, name="signup"),
+    url(r'^login/$', views.userlogin, name="login"),
+    url(r'^logout/$', views.userlogout, name="logout"),
+
  
  #[-\w] takes the minues sign & Words, + means more than one,,,,, \d+ for Digits
 #carrot ^ defines where URL begins and dollar sign $ where URL ends

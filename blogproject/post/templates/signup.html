@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load urlify %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+Sign Up Page
+{% endblock title %}
+
+{% block content %}
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <form method="Post" action="{% url 'posts:signup' %}" enctype="multipart/form-data">
+{% csrf_token %}
+{{form|crispy}}<br>
+   </div>
+<div class="panel-footer">
+<div align="center">
+<input class="btn btn-primary" type="submit" value="Sign Up">
+</div>
+</form>
+</div></form>
+</div>
+<br><br>
+
+
+{% endblock content %}
