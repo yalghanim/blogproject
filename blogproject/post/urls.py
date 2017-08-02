@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^signup/$', views.usersignup, name="signup"),
     url(r'^login/$', views.userlogin, name="login"),
     url(r'^logout/$', views.userlogout, name="logout"),
+    url(r'^likebutton/(?P<post_number>[\d]+)/$', views.like_button, name="like_button"),
 
  
  #[-\w] takes the minues sign & Words, + means more than one,,,,, \d+ for Digits
