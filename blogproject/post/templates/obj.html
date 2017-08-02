@@ -28,11 +28,42 @@ Created: {{input.timestamp}}<br>
 Image: <br>{% if not input.draft %}<img src="{{input.image.url}}" class="img-responsive"> {% endif %}
 {% if input.draft %} DRAFT {% endif %}
 </ul>
+<button class="btn btn-default" onclick="ajax_like()">
+<div id="likes">
+<span id="likes_count">{{like_count}}</span>
+<span class="glyphicon glyphicon-heart {% if liked %}text-danger{% endif %}" aria-hidden="true" id="heart" ></span>
+</button>
+<br><br>
 <div id="comments">
 {% include "comments.html" %}
 </div>
 <br><br>
-<a href="{% url 'posts:list' %}" class="btn btn-primary" role="button">Go Back to List</a>
+<a href="{% url 'posts:list' %}" class="btn btn-default" role="button">Go Back to List</a>
+</div>
+<script>
+	function ajax_like()
+	{
+		console.log("Like/Unlike clicked!");
+		$.ajax({
+			type: 'GET',
+			url: "{% url 'posts:like_button' post_number=input.id %}",
+			error: function(){
+				console.log("noob")
+			},
+			success: function(data){
+				$("#likes_count").text(data.like_count)
+				if(data.action==="like")
+				{
+					$("#heart").addClass("text-danger");
+				} else {
+					$("#heart").removeClass("text-danger");
+				}
+
+			},
+		})
+	}
+</script>
+ 
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="embed-responsive embed-responsive-16by9">
   <iframe class="embed-responsive-item" src="https://www.youtube.com//embed/cpPG0bKHYKc"></iframe>
