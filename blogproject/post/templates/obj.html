@@ -18,6 +18,7 @@
 	</style>
 </head>
 <body>
+{% include 'facebook.html' %}
 <div class="container">
 <h1>ID Page</h1>
 <ul id="new">
@@ -28,6 +29,8 @@ Created: {{input.timestamp}}<br>
 Image: <br>{% if not input.draft %}<img src="{{input.image.url}}" class="img-responsive"> {% endif %}
 {% if input.draft %} DRAFT {% endif %}
 </ul>
+<div class="fb-comments" data-href="{{request.absurl}}" data-numposts="5"></div>
+<!--
 <button class="btn btn-default" onclick="ajax_like()">
 <div id="likes">
 <span id="likes_count">{{like_count}}</span>
@@ -35,12 +38,14 @@ Image: <br>{% if not input.draft %}<img src="{{input.image.url}}" class="img-res
 </button>
 <br><br>
 <div id="comments">
-{% include "comments.html" %}
-</div>
+ {% include "comments.html" %} 
+</div> 
+-->
 <br><br>
 <a href="{% url 'posts:list' %}" class="btn btn-default" role="button">Go Back to List</a>
 </div>
-<script>
+
+<!-- <script>
 	function ajax_like()
 	{
 		console.log("Like/Unlike clicked!");
@@ -62,7 +67,7 @@ Image: <br>{% if not input.draft %}<img src="{{input.image.url}}" class="img-res
 			},
 		})
 	}
-</script>
+</script> -->
  
 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
 <div class="embed-responsive embed-responsive-16by9">
