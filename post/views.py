@@ -80,7 +80,7 @@ def usersignup(request):
 
 
 def home(request):
-	return HttpResponse("<h1> شغال </h1><br><br><h3>THIS STUFF IS EASY</h3>")
+	return HttpResponse("<br><br><h3>THIS STUFF IS EASY</h3>")
 def post_create(request):
 	return HttpResponse("<h1>create</h1>")
 def post_update(request):
