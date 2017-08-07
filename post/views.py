@@ -94,7 +94,6 @@ def post_list(request):
 	post_list = Post.objects.filter(draft=False).filter(publish__lte=today)
 	if request.user.is_staff or request.user.is_superuser:
 		post_list = Post.objects.all()
-	post_one = Post.objects.get(title="edited name")
 	query = request.GET.get("q")
 	if query:
 		post_list = post_list.filter(
