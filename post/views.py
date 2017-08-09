@@ -9,6 +9,8 @@ from django.http import Http404, JsonResponse
 from django.utils import timezone 
 from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout 
+from django.template.defaultfilters import slugify
+
 
 def like_button(request, post_number):
 	obj = Post.objects.get(id= post_number)
@@ -177,6 +179,10 @@ def post_update(request, slug):
 	post_object = get_object_or_404(Post, slug=slug)
 	form = PostForm(request.POST or None, request.FILES or None, instance=post_object)
 	if form.is_valid():
+		obj = form.save(commit=False)
+		slug = create_slug(obj)
+		obj.slug = slug 
+		obj.save()
 		form.save()
 		messages.success(request, "zain sawait")
 		return redirect("posts:list")

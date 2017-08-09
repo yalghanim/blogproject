@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from .views import PostListAPIView, PostDetailAPIView, PostDeleteAPIView, PostCreateAPIView, PostUpdateAPIView
+from .views import PostListAPIView, PostDetailAPIView, PostDeleteAPIView, PostCreateAPIView, PostUpdateAPIView, CommentListAPIView, CommentCreateAPIView, UserCreateAPIView, UserLoginAPIView
 # from django.conf import settings
 # from django.conf.urls.static import static
 
@@ -9,4 +9,8 @@ urlpatterns = [
     url(r'^delete/(?P<post_slug>[-\w]+)/$', PostDeleteAPIView.as_view(), name="delete"),
     url(r'^create/$', PostCreateAPIView.as_view(), name="create"),
     url(r'^update/(?P<post_slug>[-\w]+)/$', PostUpdateAPIView.as_view(), name="update"),
+    url(r'^comment/list/$', CommentListAPIView.as_view(), name="comment_list"),
+    url(r'^comment/create/$', CommentCreateAPIView.as_view(), name="comment_create"),
+    url(r'^register/$', UserCreateAPIView.as_view(), name="register"),
+    url(r'^login/$', UserLoginAPIView.as_view(), name="login"),
 ]
