@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django_comments',
     'rest_framework',
     'api',
+    'googleapp',
 ]
 
 

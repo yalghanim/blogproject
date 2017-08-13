@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<table class="table">
+<tr> <td> <b> Name</b> </td>
+<td> {{response.result.name}}</td></tr>
+<tr> <td> <b> Json </b></td>
+<td><form action="{% url 'api:googledetail' %}" method="GET">
+<input type="hidden" name="reference" value="{{response.result.reference}}">
+<input type="submit" value="{{response.result.reference|truncatechars:20}}" class="btn btn-primary">
+</form></td></tr>
+<tr> <td> <b> Website </b> </td>
+<td>
+<a href="{{response.result.website}}">{{response.result.website}}</a>
+</td></tr>
+<tr> <td> <b> Location </b> </td>
+<td>
+<a href="{{response.result.url}}">{{response.result.url}}</a>
+</td></tr>
+</table>
+
+
+<iframe
+      id="map"
+      width="600"
+      height="450"
+      frameborder="0" style="border:0"
+      src="" allowfullscreen>
+</iframe>
+
+
+    <script type="text/javascript">
+
+        function maps(lat, long) {
+            var map = $("#map");
+            map.attr('src', "https://www.google.com/maps/embed/v1/directions?key={{ api_key }}&origin="+lat+","+long+"&destination={{ response.result.geometry.location.lat }},{{ response.result.geometry.location.lng }}");
+        }
+
+        navigator.geolocation.getCurrentPosition(function(position) {
+            maps(position.coords.latitude, position.coords.longitude);
+        });
+
+    </script>
+
+{% endblock content %}

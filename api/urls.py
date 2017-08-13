@@ -2,6 +2,7 @@ from django.conf.urls import url
 from .views import PostListAPIView, PostDetailAPIView, PostDeleteAPIView, PostCreateAPIView, PostUpdateAPIView, CommentListAPIView, CommentCreateAPIView, UserCreateAPIView, UserLoginAPIView
 # from django.conf import settings
 # from django.conf.urls.static import static
+from googleapp import views
 
 urlpatterns = [
     url(r'^list/$', PostListAPIView.as_view(), name="list"),
@@ -13,4 +14,7 @@ urlpatterns = [
     url(r'^comment/create/$', CommentCreateAPIView.as_view(), name="comment_create"),
     url(r'^register/$', UserCreateAPIView.as_view(), name="register"),
     url(r'^login/$', UserLoginAPIView.as_view(), name="login"),
+    url(r'^google/$', views.text_search, name='google'), #imported from googleapp
+    url(r'^googledetail/$', views.text_detail, name='googledetail'), #imported from googleapp
+    url(r'^googleplace/$', views.place_detail, name='googleplace'), #imported from googleapp
 ]

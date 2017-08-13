@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>STATUS: {% if response.status is "OK" %}{{response.status}}{% endif %}</h1>
+<br><br>
+
+
+<h5> Search Query: 
+<form action="{% url 'api:google' %}" method="GET">
+<input type="text" name="query" value="{{query}}" placeholder="Start searching..">&emsp;&emsp;<input type="submit" value="Search" class="btn btn-info">
+</h5>
+</form>
+
+<br>
+<table class="table">
+<form action="{% url 'api:google' %}" method="GET">
+{% if response.next_page_token %} {# button  #}
+<input type="hidden" name="next_page_token" value="{{response.next_page_token}}">
+<input type="submit" value="Next Page" class="btn btn-primary"><br><br>
+{% endif %} 
+</form>
+
+
+{% for result in response.results %}
+<tr> <td> {{result.name}}</td>
+<td>
+<form action="{% url 'api:googledetail' %}" method="GET">
+<input type="hidden" name="reference" value="{{result.reference}}">
+<input type="submit" value="jSon" class="btn btn-primary">
+</form>
+</td>
+<td>
+<form action="{% url 'api:googleplace' %}" method="GET">
+<input type="hidden" name="reference" value="{{result.reference}}">
+<input type="submit" value="Info" class="btn btn-primary">
+</form>
+</td>
+<td>
+<a href="{{response.result.website}}">Website</a>
+</td>
+<td>
+<a href="{{response.result.url}}">Location</a>
+</td>
+</tr>
+{% endfor %}
+</table>
+
+
+
+
+
+
+{% endblock content %}
