@@ -45,6 +45,11 @@ INSTALLED_APPS = [
     'rest_framework',
     'api',
     'googleapp',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.twitter',
 ]
 
 
@@ -135,6 +140,15 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+# needed for django all auth
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -161,4 +175,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
     
-
+LOGIN_REDIRECT_URL = '/'
