@@ -17,4 +17,5 @@ urlpatterns = [
     url(r'^google/$', views.text_search, name='google'), #imported from googleapp
     url(r'^googledetail/$', views.text_detail, name='googledetail'), #imported from googleapp
     url(r'^googleplace/$', views.place_detail, name='googleplace'), #imported from googleapp
+    url(r'^nearby/$', views.nearby, name='googlenearby'), #imported from googleapp
 ]

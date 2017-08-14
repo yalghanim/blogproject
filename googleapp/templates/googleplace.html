@@ -19,7 +19,7 @@
 </td></tr>
 </table>
 
-
+<div align="center">
 <iframe
       id="map"
       width="600"
@@ -27,7 +27,7 @@
       frameborder="0" style="border:0"
       src="" allowfullscreen>
 </iframe>
-
+</div>
 
     <script type="text/javascript">
 
@@ -39,7 +39,6 @@
         navigator.geolocation.getCurrentPosition(function(position) {
             maps(position.coords.latitude, position.coords.longitude);
         });
-
     </script>
 
 {% endblock content %}

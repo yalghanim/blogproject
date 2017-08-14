@@ -44,3 +44,27 @@ def place_detail(request):
 	}
 
 	return render(request, 'googleplace.html', context)
+
+
+def nearby(request):
+	api_key = "AIzaSyBx6lJJvCFx69Bf5-Gkv7QG2Uk-CsGO_8w"
+	latitude = request.GET.get("latitude", "")
+	longitude = request.GET.get("longitude", "")
+	placetype = request.GET.get("palcetype", "")
+	radius = request.GET.get("radius", "")
+	name = request.GET.get("name", "")
+
+	url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location='+latitude+','+longitude+'&radius='+radius+'&type='+placetype+'&name='+name+'&key='+api_key
+
+	response = requests.get(url)
+
+	return render(request, 'nearby.html',{'response': response.json()})
+
+
+
+
+
+
+
+
+
