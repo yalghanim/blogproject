@@ -11,7 +11,12 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout 
 from django.template.defaultfilters import slugify
 
+def theme(request):
+	return render(request, 'index.html',{})
 
+def simple(request):
+	return render(request, 'blogindex.html',{})
+	
 def like_button(request, post_number):
 	obj = Post.objects.get(id= post_number)
 
@@ -120,7 +125,7 @@ def new_list(request):
 	context = {
 	"post_list": post_list,
 	}
-	return render(request, 'newlist.html', context) 
+	return render(request, 'blogindex.html', context) 
 
 def post_id(request, slug):
 	obj = get_object_or_404(Post, slug=slug)

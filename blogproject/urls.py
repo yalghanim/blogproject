@@ -24,6 +24,8 @@ urlpatterns = [
     url(r'^', include('post.urls', namespace="posts")),
     url(r'^comments/', include('django_comments.urls')),
     url(r'^api/', include('api.urls', namespace="api")),
+    url(r'^gh/', include('githubapp.urls', namespace="github")),
+    url(r'^tw/', include('twitterapp.urls', namespace="twitter")),
     url(r'^accounts/', include('allauth.urls')),
 ]
 

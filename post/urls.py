@@ -23,7 +23,8 @@ urlpatterns = [
     url(r'^login/$', views.userlogin, name="login"),
     url(r'^logout/$', views.userlogout, name="logout"),
     url(r'^likebutton/(?P<post_number>[\d]+)/$', views.like_button, name="like_button"),
-
+    url(r'^theme/$', views.theme, name="theme"),
+    url(r'^simple/$', views.simple, name="simple"),
  
  #[-\w] takes the minues sign & Words, + means more than one,,,,, \d+ for Digits
 #carrot ^ defines where URL begins and dollar sign $ where URL ends

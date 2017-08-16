@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<table class="table table-striped table-responsive table-hover table-bordered">
+
+<tr class="info"><b>
+<td> Username </td>
+<td> Type </td>
+<td> Profile link </td>
+<td> Admin </td>
+<td> Avatar </td>
+</b></tr>
+{% for result in response %}
+<tr> <td> <b> {{result.login}} <b> </td>
+<td>  {{result.type}} </td>
+<td> <a href="{{result.url}}"> {{result.url}} </a> </td>
+<td> {% if result.site_admin is False %} No {% endif %} </td>
+<td> <img src="{{result.avatar_url}}" class="img img-responsive" style="max-height: 100px; max-width: 100px;">
+</td>
+
+</tr>
+{% endfor %}
+</table>
+
+
+{% endblock content %}
